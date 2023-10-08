@@ -1,0 +1,5 @@
+- 根目录下的 `utility.cpp/.h`，只在 `solver.cpp` 等外层使用了；因此，不需要拷贝。
+- `formulas` 文件夹里，其实目前只需要 `aalta_formula.cpp/.h`
+    - 其他~~也保留~~是因为，可能启发式算法还需要使用，以便进行性能对比
+    - 不保留了，因为编译有报错；好像 aalta_formula 类跟 minisat 强相关
+- TODO：为什么在mac下编译失败？之前 synviasat-tests 是能正常编译的啊
