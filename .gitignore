@@ -35,4 +35,5 @@
 cnf.dimacs*
 
 build
-build
+examples
+ltlfsyn-bmc*
