@@ -6,7 +6,6 @@
 #include <sys/time.h>
 
 #include "formula/aalta_formula.h"
-#include "synthesis.h"
 
 using namespace aalta;
 using namespace std;
@@ -99,6 +98,7 @@ int main(int argc, char **argv)
 		verbose = stoi(verboseStr);
 
 	// TODO: perform synthesis
+	cout << af->to_string() << endl;
 
 	aalta_formula::destroy();
 
@@ -107,8 +107,6 @@ int main(int argc, char **argv)
 	timeuse = (t2.tv_sec - t1.tv_sec) * 1000000 + t2.tv_usec - t1.tv_usec;
 	cout << "CPU time: " << 1000 * double(endTime - startTime) / CLOCKS_PER_SEC << " ms" << endl;
 	cout << "total time: " << timeuse / 1000.0 << " ms" << endl;
-	cout << "sat cnt: " << Syn_Frame::sat_call_cnt << endl;
-	cout << "average sat time: " << Syn_Frame::average_sat_time << " ms" << endl;
 
 	return 0;
 }
