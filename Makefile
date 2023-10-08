@@ -1,7 +1,8 @@
 FORMULAFILES	=	formula/aalta_formula.cpp
 PARSERFILES		=	ltlparser/ltl_formula.c ltlparser/ltllexer.c ltlparser/ltlparser.c ltlparser/trans.c
+UTILFILES		=	util/utility.cpp
 
-ALLFILES		=	main.cpp $(FORMULAFILES) $(PARSERFILES)
+ALLFILES		=	main.cpp $(FORMULAFILES) $(PARSERFILES) $(UTILFILES)
 
 
 CC				=   g++

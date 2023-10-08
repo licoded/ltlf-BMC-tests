@@ -15,6 +15,7 @@
 #include <iostream>
 #include <fstream>
 #include <zlib.h>
+#include <cassert>
 using namespace std;
 
 namespace aalta
