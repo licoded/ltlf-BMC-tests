@@ -10,10 +10,11 @@
 using namespace aalta;
 using namespace std;
 
-// TODO
 void usage()
 {
-	cout << endl;
+	cout
+		<< "Usage: ./ltlfsyn-bmc <ltlf_file> <part_file>" << endl
+		<< "        Example: ./ltlfsyn-bmc example.ltlf example.part" << endl;
 }
 
 void test1()
@@ -41,7 +42,10 @@ int main(int argc, char **argv)
 	// return 0;
 
 	if (argc != 3)
+	{
 		usage();
+		exit(0);
+	}
 
 	// read formula
 	ifstream fin;
