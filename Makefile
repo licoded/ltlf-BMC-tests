@@ -5,8 +5,9 @@ UTILFILES		=	util/utility.cpp
 ALLFILES		=	main.cpp $(FORMULAFILES) $(PARSERFILES) $(UTILFILES)
 
 
-CC				=   g++
-FLAG			=	-I./ -D __STDC_LIMIT_MACROS -D __STDC_FORMAT_MACROS -fpermissive #-fsanitize=address -fno-omit-frame-pointer
+CC				=   g++ -std=c++11
+DIS_WARN_FLAGS	=	-Wno-deprecated
+FLAG			=	$(DIS_WARN_FLAGS) -I./ -D __STDC_LIMIT_MACROS -D __STDC_FORMAT_MACROS -fpermissive #-fsanitize=address -fno-omit-frame-pointer
 DEBUGFLAG		=	-D DEBUG -g -pg
 RELEASEFLAG		=	-O3
 
