@@ -70,12 +70,14 @@ int main(int argc, char **argv)
     int verbose = false;
 	if (verboseStr != NULL && strlen(verboseStr) > 0)
 		verbose = stoi(verboseStr);
+	
+	xnf::xnf_tran xnf_tran_ = xnf::xnf_tran(af, k);
 
 	cout << "==== before xnf:\t\t\t" << af->to_string() << endl;
-	af = xnf::xnf(af, k);
+	af = xnf_tran_.xnf(af, k);
 	cout << "==== after  xnf:\t\t\t" << af->to_string() << endl;
 
-	af = xnf::xnf_add_label_for_var(af);
+	af = xnf_tran_.xnf_add_label_for_var(af);
 	cout << "==== after  xnf_add_label_for_var:\t" << af->to_string() << endl;
 
 	aalta_formula::destroy();
