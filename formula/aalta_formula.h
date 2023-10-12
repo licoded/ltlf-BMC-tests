@@ -157,7 +157,7 @@ public:
   {
     True,
     False,
-    Literal,
+    Literal,  // in fact, this is exactly atoms
     Not,
     Or,
     And,

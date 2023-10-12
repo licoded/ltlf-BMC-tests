@@ -6,6 +6,7 @@
 #include <sys/time.h>
 
 #include "formula/aalta_formula.h"
+#include "xnf.h"
 
 using namespace aalta;
 using namespace std;
@@ -100,6 +101,8 @@ int main(int argc, char **argv)
     int verbose = false;
 	if (verboseStr != NULL && strlen(verboseStr) > 0)
 		verbose = stoi(verboseStr);
+
+	af = xnf::xnf0(af);
 
 	// TODO: perform synthesis
 	cout << af->to_string() << endl;
