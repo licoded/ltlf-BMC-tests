@@ -18,6 +18,7 @@ using namespace aalta;
 namespace xnf
 {
     aalta_formula *xnf0(aalta_formula *f);
+    aalta_formula *xnf(aalta_formula *f, int k);
 }
 
 #endif
