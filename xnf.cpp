@@ -12,7 +12,7 @@ namespace xnf
     /**
      * Suppose the input `aalta_formula *f` is in nnf!!!
     */
-    aalta_formula *xnf0(aalta_formula *f)
+    aalta_formula *xnf_tran::xnf0(aalta_formula *f)
     {
         aalta_formula *res, *left, *right;
         switch (f->oper())
@@ -59,7 +59,7 @@ namespace xnf
      * NEED_TESTs:
      *      - There is only `X[!]` in return formula, no `R` or `U`!!!
     */
-    aalta_formula *xnf(aalta_formula *f, int k)
+    aalta_formula *xnf_tran::xnf(aalta_formula *f, int k)
     {
         if (k == 0)
             return xnf0(f);
@@ -113,17 +113,18 @@ namespace xnf
         return res;
     }
 
-    aalta_formula *add_label_for_var(aalta_formula *f, int label_id)
+    aalta_formula *xnf_tran::add_label_for_var(aalta_formula *f, int label_id)
     {
         if (f->oper() == aalta_formula::Not)
         {
             return aalta_formula(aalta_formula::Not, nullptr, add_label_for_var(f->r_af(), label_id)).unique();
         }
         string labeled_item_str = f->to_string()+to_string(label_id);
+        quantifiers_[label_id].insert(labeled_item_str);
         return aalta_formula(labeled_item_str.c_str(), true).unique();
     }
 
-    aalta_formula *xnf_add_label_for_var(aalta_formula *f, int k)
+    aalta_formula *xnf_tran::xnf_add_label_for_var(aalta_formula *f, int k)
     {
         aalta_formula *res, *left, *right;
         switch (f->oper())
