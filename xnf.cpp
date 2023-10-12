@@ -56,6 +56,8 @@ namespace xnf
 
     /**
      * Suppose the input `aalta_formula *f` is in nnf!!!
+     * NEED_TESTs:
+     *      - There is only `X[!]` in return formula, no `R` or `U`!!!
     */
     aalta_formula *xnf(aalta_formula *f, int k)
     {
