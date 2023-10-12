@@ -42,43 +42,9 @@ int main(int argc, char **argv)
 	// test1();
 	// return 0;
 
-	if (argc != 3)
-	{
-		usage();
-		exit(0);
-	}
-
-	// read formula
-	ifstream fin;
-	fin.open(argv[1], ios::in);
-	if (!fin.is_open())
-	{
-		cout << "cannot open file " << argv[1] << endl;
-		return 0;
-	}
-	string input_f, tmp;
-	unordered_set<string> env_var;
-	getline(fin, input_f);
-	fin.close();
-	// === read formula END ===
-
-	// read variables partition
-	fin.open(argv[2], ios::in);
-	if (!fin.is_open())
-	{
-		cout << "cannot open file " << argv[2] << endl;
-		return 0;
-	}
-	fin >> tmp;
-	while (fin >> tmp)
-	{
-		if (tmp[0] != '.')
-			env_var.insert(tmp);
-		else
-			break;
-	}
-	fin.close();
-	// === read variables partition END ===
+	string input_f;
+	cout << "Please input formula:\n";
+	getline(cin, input_f);
 
 	clock_t startTime, endTime;
 	startTime = clock();
@@ -102,10 +68,11 @@ int main(int argc, char **argv)
 	if (verboseStr != NULL && strlen(verboseStr) > 0)
 		verbose = stoi(verboseStr);
 
+	cout << "==== before xnf0:\t" << af->to_string() << endl;
+
 	af = xnf::xnf0(af);
 
-	// TODO: perform synthesis
-	cout << af->to_string() << endl;
+	cout << "==== after  xnf0:\t" << af->to_string() << endl;
 
 	aalta_formula::destroy();
 
