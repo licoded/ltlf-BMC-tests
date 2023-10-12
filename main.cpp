@@ -71,11 +71,12 @@ int main(int argc, char **argv)
 	if (verboseStr != NULL && strlen(verboseStr) > 0)
 		verbose = stoi(verboseStr);
 
-	cout << "==== before xnf:\t" << af->to_string() << endl;
-
+	cout << "==== before xnf:\t\t\t" << af->to_string() << endl;
 	af = xnf::xnf(af, k);
+	cout << "==== after  xnf:\t\t\t" << af->to_string() << endl;
 
-	cout << "==== after  xnf:\t" << af->to_string() << endl;
+	af = xnf::xnf_add_label_for_var(af);
+	cout << "==== after  xnf_add_label_for_var:\t" << af->to_string() << endl;
 
 	aalta_formula::destroy();
 
