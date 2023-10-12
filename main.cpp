@@ -43,8 +43,11 @@ int main(int argc, char **argv)
 	// return 0;
 
 	string input_f;
+	int k;
 	cout << "Please input formula:\n";
 	getline(cin, input_f);
+	cout << "Please input bounded-k:\n";
+	cin >> k;
 
 	clock_t startTime, endTime;
 	startTime = clock();
@@ -68,11 +71,11 @@ int main(int argc, char **argv)
 	if (verboseStr != NULL && strlen(verboseStr) > 0)
 		verbose = stoi(verboseStr);
 
-	cout << "==== before xnf0:\t" << af->to_string() << endl;
+	cout << "==== before xnf:\t" << af->to_string() << endl;
 
-	af = xnf::xnf0(af);
+	af = xnf::xnf(af, k);
 
-	cout << "==== after  xnf0:\t" << af->to_string() << endl;
+	cout << "==== after  xnf:\t" << af->to_string() << endl;
 
 	aalta_formula::destroy();
 
