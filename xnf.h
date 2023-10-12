@@ -19,6 +19,7 @@ namespace xnf
 {
     aalta_formula *xnf0(aalta_formula *f);
     aalta_formula *xnf(aalta_formula *f, int k);
+    aalta_formula *xnf_add_label_for_var(aalta_formula *f, int k = 0);
 }
 
 #endif

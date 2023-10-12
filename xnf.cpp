@@ -112,4 +112,61 @@ namespace xnf
         }
         return res;
     }
+
+    aalta_formula *add_label_for_var(aalta_formula *f, int label_id)
+    {
+        if (f->oper() == aalta_formula::Not)
+        {
+            return aalta_formula(aalta_formula::Not, nullptr, add_label_for_var(f->r_af(), label_id)).unique();
+        }
+        string labeled_item_str = f->to_string()+to_string(label_id);
+        return aalta_formula(labeled_item_str.c_str(), true).unique();
+    }
+
+    aalta_formula *xnf_add_label_for_var(aalta_formula *f, int k)
+    {
+        aalta_formula *res, *left, *right;
+        switch (f->oper())
+        {
+        case aalta_formula::Literal:
+            cout
+                << "xnf.cpp::xnf0: Error reach here!\n"
+                << "\t\t You should work out, 'What does `aalta_formula::Literal` means?'\n";
+            exit(0);
+            break;
+        case aalta_formula::Or:
+        case aalta_formula::And:
+            left = xnf_add_label_for_var(f->l_af(), k);
+            right = xnf_add_label_for_var(f->r_af(), k);
+            res = aalta_formula(f->oper(), left, right).unique();
+            break;
+        case aalta_formula::Next:
+            // res = aalta_formula(aalta_formula::Next, nullptr, xnf(f->r_af(), k-1)).unique();
+            res = xnf_add_label_for_var(f->r_af(), k+1);
+            break;
+        case aalta_formula::WNext:
+            cout << "xnf.cpp::xnf0: Error reach here! (WNext shouldn't exist!)\n";
+            exit(0);
+            break;
+        case aalta_formula::Until:
+            cout << "xnf.cpp::xnf0: Error reach here! (Until shouldn't exist!)\n";
+            exit(0);
+            break;
+        case aalta_formula::Release:
+            cout << "xnf.cpp::xnf0: Error reach here! (Release shouldn't exist!)\n";
+            exit(0);
+            break;
+        default:
+            /**
+             * literals: 
+             *      1. Literals
+             *      2. Negation of Literals
+             *          (Because the input `aalta_formula *f` is in nnf!!!)
+             *      3. Undefined(Atoms)
+            */
+            res = add_label_for_var(f, k);
+            break;
+        }
+        return res;
+    }
 }
