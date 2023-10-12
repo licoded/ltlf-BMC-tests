@@ -85,12 +85,16 @@ namespace xnf
             break;
         case aalta_formula::Until:
             Xit = aalta_formula(aalta_formula::Next, nullptr, f).unique();
-            temp = aalta_formula(aalta_formula::And, xnf(f->l_af(), k), xnf(Xit, k)).unique();
+            temp = (f->l_af() == aalta_formula::TRUE())
+                ? xnf(Xit, k)
+                : aalta_formula(aalta_formula::And, xnf(f->l_af(), k), xnf(Xit, k)).unique();
             res = aalta_formula(aalta_formula::Or, xnf(f->r_af(), k), temp).unique();
             break;
         case aalta_formula::Release:
             Xit = aalta_formula(aalta_formula::Next, nullptr, f).unique();
-            temp = aalta_formula(aalta_formula::Or, xnf(f->l_af(), k), xnf(Xit, k)).unique();
+            temp = (f->l_af() == aalta_formula::FALSE())
+                ? xnf(Xit, k)
+                : aalta_formula(aalta_formula::Or, xnf(f->l_af(), k), xnf(Xit, k)).unique();
             res = aalta_formula(aalta_formula::And, xnf(f->r_af(), k), temp).unique();
             break;
         default:
