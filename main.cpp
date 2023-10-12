@@ -80,6 +80,16 @@ int main(int argc, char **argv)
 	af = xnf_tran_.xnf_add_label_for_var(af);
 	cout << "==== after  xnf_add_label_for_var:\t" << af->to_string() << endl;
 
+	for (int i = 0; i <= k; i++)
+	{
+		cout << i << ":\t";
+		for (const auto& elem : xnf_tran_.get_quantifiers_by_layer(i))
+		{
+			cout << elem << ", ";
+		}
+		cout << endl;
+	}
+
 	aalta_formula::destroy();
 
 	gettimeofday(&t2, NULL);
